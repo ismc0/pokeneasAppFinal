@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  pokeneas:
+    image: imcg22/pokeneas-app:latest
+    ports:
+      - "80:3000"  # Mapea el puerto 80 del host al 3000 del contenedor
+    deploy:
+      mode: replicated
+      replicas: 10
+      restart_policy:
+        condition: on-failure
+    networks:
+      - pokeneas-network
+
+networks:
+  pokeneas-network:
+    driver: overlay
+
